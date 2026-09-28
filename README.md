@@ -30,6 +30,75 @@ El backend queda disponible en `http://localhost:8000`.
 - Health check: `http://localhost:8000/health`
 - Documentación interactiva: `http://localhost:8000/docs`
 
+## Base de datos local
+
+Con Docker instalado, iniciar PostgreSQL desde la raíz del proyecto:
+
+```bash
+docker compose up -d
+```
+
+El contenedor usa PostgreSQL en `localhost:5432`. El volumen `postgres-data` conserva los datos cuando el contenedor se detiene.
+
+Con el entorno virtual activo, ejecutar la primera migración desde `backend`:
+
+```bash
+cd backend
+alembic upgrade head
+```
+
+La migración inicial es intencionalmente vacía: confirma la conexión y prepara Alembic sin crear todavía tablas de negocio.
+
+Para revertir la migración:
+
+```bash
+alembic downgrade base
+```
+
+Para detener PostgreSQL sin eliminar los datos:
+
+```bash
+docker compose down
+```
+
+## Calidad de código
+
+El backend usa Ruff para revisar y formatear Python:
+
+```bash
+cd backend
+ruff check .
+ruff format --check .
+```
+
+Para aplicar correcciones automáticas:
+
+```bash
+ruff check . --fix
+ruff format .
+```
+
+El frontend usa ESLint para revisar JavaScript/React y Prettier para formatear:
+
+```bash
+cd frontend
+npm run lint
+npm run format:check
+```
+
+Para aplicar correcciones automáticas:
+
+```bash
+npm run lint:fix
+npm run format
+```
+
+Antes de considerar un cambio listo, también se debe confirmar que el frontend compila:
+
+```bash
+npm run build
+```
+
 ## Frontend
 
 En otra terminal, instalar dependencias y arrancar Vite:

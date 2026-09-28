@@ -2,8 +2,15 @@
 
 ## Repository State
 
-- This repository is currently a planning-only repository: there is no application source, package manifest, CI configuration, or runnable test/lint command yet.
+- The repository contains a FastAPI backend in `backend/`, a Vite/React frontend in `frontend/`, and a PostgreSQL service defined in `docker-compose.yml`.
+- Backend dependencies and commands use the virtual environment at `backend/.venv`; frontend dependencies and commands run from `frontend/` with npm.
 - The project plan and ticket order are in `docs/checklist-expense-tracker.md`; use it as the scope reference while the implementation is being built.
+
+## Verification Commands
+
+- Backend: from `backend/`, run `ruff check .` and `ruff format --check .`.
+- Frontend: from `frontend/`, run `npm run lint`, `npm run format:check`, and `npm run build`.
+- Start PostgreSQL with `docker compose up -d` from the repository root before running database migrations.
 
 ## Working Rules
 
