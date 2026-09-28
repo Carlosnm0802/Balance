@@ -44,7 +44,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 2 | Configurar PostgreSQL local + conexión desde FastAPI + primera migración vacía | [x] |
 | 3 | Configurar linting/formateo básico (backend y frontend) | [x] |
 | 4 | Definir modelos: Usuario, Categoría, Gasto, Presupuesto | [x] |
-| 5 | Migraciones + seed de categorías predefinidas | [ ] |
+| 5 | Migraciones + seed de categorías predefinidas | [x] |
 | 6 | Endpoint de registro de cuenta (hashing de contraseña) | [ ] |
 | 7 | Endpoint de login (JWT/sesión — según diseño técnico) | [ ] |
 | 8 | Middleware/dependencia de autenticación para proteger rutas | [ ] |

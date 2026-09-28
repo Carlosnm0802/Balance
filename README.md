@@ -47,7 +47,7 @@ cd backend
 alembic upgrade head
 ```
 
-La migración inicial es intencionalmente vacía: confirma la conexión y prepara Alembic sin crear todavía tablas de negocio.
+La primera migración fue intencionalmente vacía para confirmar la conexión. La migración actual crea las tablas de Balance y carga las categorías predefinidas.
 
 Para revertir la migración:
 
