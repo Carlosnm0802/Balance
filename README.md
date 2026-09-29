@@ -111,7 +111,18 @@ El backend expone el registro mediante `POST /auth/register`. El cuerpo debe inc
 }
 ```
 
-Las contraseñas se almacenan como hashes Argon2id y nunca se devuelven en la respuesta. El registro normaliza el correo, crea la cuenta activa y responde con `201 Created`. El login y la emisión de tokens se implementarán en tickets posteriores.
+Las contraseñas se almacenan como hashes Argon2id y nunca se devuelven en la respuesta. El registro normaliza el correo, crea la cuenta activa y responde con `201 Created`.
+
+El login está disponible en `POST /auth/login`:
+
+```json
+{
+  "email": "carlos@example.com",
+  "password": "UnaContrasenaSegura123"
+}
+```
+
+Devuelve un access token JWT con algoritmo HS256 y expiración configurable mediante `JWT_ACCESS_TOKEN_EXPIRE_MINUTES` (30 minutos por defecto). La clave usada para firmar tokens se configura con `JWT_SECRET_KEY` y nunca debe subirse al repositorio. La protección de rutas mediante `Authorization: Bearer` se implementará en el ticket siguiente.
 
 ## Frontend
 

@@ -3,12 +3,13 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from app.auth.security import hash_password
+from app.auth.security import create_access_token, hash_password, verify_password
 from app.db.session import get_db
 from app.models.user import User
-from app.schemas.user import UserCreate, UserResponse
+from app.schemas.user import TokenResponse, UserCreate, UserLogin, UserResponse
 
 router = APIRouter(prefix="/auth", tags=["auth"])
+INVALID_CREDENTIALS = "Correo o contraseña incorrectos"
 
 
 @router.post(
@@ -46,3 +47,23 @@ def register_user(user_data: UserCreate, db: Session = Depends(get_db)) -> User:
 
     db.refresh(user)
     return user
+
+
+@router.post("/login", response_model=TokenResponse)
+def login_user(credentials: UserLogin, db: Session = Depends(get_db)) -> TokenResponse:
+    email = str(credentials.email).strip().lower()
+    user = db.scalar(select(User).where(User.email == email))
+    if (
+        user is None
+        or not user.is_active
+        or not verify_password(credentials.password, user.password_hash)
+    ):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=INVALID_CREDENTIALS,
+        )
+
+    return TokenResponse(
+        access_token=create_access_token(str(user.id)),
+        token_type="bearer",
+    )
