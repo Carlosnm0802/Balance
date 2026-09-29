@@ -99,6 +99,20 @@ Antes de considerar un cambio listo, también se debe confirmar que el frontend 
 npm run build
 ```
 
+## Registro de usuarios
+
+El backend expone el registro mediante `POST /auth/register`. El cuerpo debe incluir:
+
+```json
+{
+  "name": "Carlos",
+  "email": "carlos@example.com",
+  "password": "UnaContrasenaSegura123"
+}
+```
+
+Las contraseñas se almacenan como hashes Argon2id y nunca se devuelven en la respuesta. El registro normaliza el correo, crea la cuenta activa y responde con `201 Created`. El login y la emisión de tokens se implementarán en tickets posteriores.
+
 ## Frontend
 
 En otra terminal, instalar dependencias y arrancar Vite:
