@@ -23,3 +23,11 @@ def create_access_token(subject: str) -> str:
     )
     payload = {"sub": subject, "exp": expires_at}
     return jwt.encode(payload, settings.jwt_secret_key, algorithm=JWT_ALGORITHM)
+
+
+def decode_access_token(token: str) -> dict[str, object]:
+    return jwt.decode(
+        token,
+        settings.jwt_secret_key,
+        algorithms=[JWT_ALGORITHM],
+    )

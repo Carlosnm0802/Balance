@@ -3,6 +3,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from app.auth.dependencies import get_current_user
 from app.auth.security import create_access_token, hash_password, verify_password
 from app.db.session import get_db
 from app.models.user import User
@@ -67,3 +68,8 @@ def login_user(credentials: UserLogin, db: Session = Depends(get_db)) -> TokenRe
         access_token=create_access_token(str(user.id)),
         token_type="bearer",
     )
+
+
+@router.get("/me", response_model=UserResponse)
+def read_current_user(current_user: User = Depends(get_current_user)) -> User:
+    return current_user

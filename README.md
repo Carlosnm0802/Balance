@@ -122,7 +122,15 @@ El login está disponible en `POST /auth/login`:
 }
 ```
 
-Devuelve un access token JWT con algoritmo HS256 y expiración configurable mediante `JWT_ACCESS_TOKEN_EXPIRE_MINUTES` (30 minutos por defecto). La clave usada para firmar tokens se configura con `JWT_SECRET_KEY` y nunca debe subirse al repositorio. La protección de rutas mediante `Authorization: Bearer` se implementará en el ticket siguiente.
+Devuelve un access token JWT con algoritmo HS256 y expiración configurable mediante `JWT_ACCESS_TOKEN_EXPIRE_MINUTES` (30 minutos por defecto). La clave usada para firmar tokens se configura con `JWT_SECRET_KEY` y nunca debe subirse al repositorio.
+
+La ruta protegida `GET /auth/me` requiere enviar el token así:
+
+```http
+Authorization: Bearer <access_token>
+```
+
+La API valida la firma, expiración, usuario y estado activo antes de devolver sus datos públicos.
 
 ## Frontend
 

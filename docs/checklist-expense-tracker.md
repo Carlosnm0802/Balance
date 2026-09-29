@@ -47,7 +47,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 5 | Migraciones + seed de categorías predefinidas | [x] |
 | 6 | Endpoint de registro de cuenta (hashing de contraseña) | [x] |
 | 7 | Endpoint de login (JWT/sesión — según diseño técnico) | [x] |
-| 8 | Middleware/dependencia de autenticación para proteger rutas | [ ] |
+| 8 | Middleware/dependencia de autenticación para proteger rutas | [x] |
 | 9 | Endpoint "olvidé mi contraseña" (token de reseteo + Resend) | [ ] |
 | 10 | Endpoint de reseteo de contraseña (validar token + actualizar) | [ ] |
 | 11 | UI: pantalla de login | [ ] |
