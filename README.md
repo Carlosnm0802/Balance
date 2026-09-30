@@ -145,7 +145,9 @@ Content-Type: application/json
 }
 ```
 
-La respuesta es siempre `202 Accepted` con un mensaje genérico, exista o no la cuenta. Si el correo está registrado, se genera un token aleatorio de un solo uso, se guarda únicamente su hash y se envía un enlace mediante Resend. El token expira según `PASSWORD_RESET_TOKEN_EXPIRE_MINUTES` (60 minutos por defecto). La validación del token y el cambio de contraseña se implementarán en el ticket siguiente.
+La respuesta es siempre `202 Accepted` con un mensaje genérico, exista o no la cuenta. Si el correo está registrado, se genera un token aleatorio de un solo uso, se guarda únicamente su hash y se envía un enlace mediante Resend. El token expira según `PASSWORD_RESET_TOKEN_EXPIRE_MINUTES` (60 minutos por defecto).
+
+Para completar el cambio de contraseña, el frontend enviará el token del enlace junto con la nueva contraseña a `POST /auth/reset-password`. El backend valida que el token coincida, no esté usado ni expirado, actualiza la contraseña con Argon2id y marca los tokens activos del usuario como usados. Los tokens inválidos responden con `400 Bad Request` y las contraseñas que no cumplen las reglas responden con `422 Unprocessable Entity`.
 
 ## Frontend
 

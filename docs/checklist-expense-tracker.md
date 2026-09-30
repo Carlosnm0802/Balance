@@ -49,7 +49,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 7 | Endpoint de login (JWT/sesión — según diseño técnico) | [x] |
 | 8 | Middleware/dependencia de autenticación para proteger rutas | [x] |
 | 9 | Endpoint "olvidé mi contraseña" (token de reseteo + Resend) | [x] |
-| 10 | Endpoint de reseteo de contraseña (validar token + actualizar) | [ ] |
+| 10 | Endpoint de reseteo de contraseña (validar token + actualizar) | [x] |
 | 11 | UI: pantalla de login | [ ] |
 | 12 | UI: pantalla de registro | [ ] |
 | 13 | UI: pantalla de recuperación/reseteo de contraseña | [ ] |

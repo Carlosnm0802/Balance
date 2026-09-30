@@ -17,6 +17,7 @@ from app.models.password_reset_token import PasswordResetToken
 from app.models.user import User
 from app.schemas.user import (
     ForgotPasswordRequest,
+    ResetPasswordRequest,
     TokenResponse,
     UserCreate,
     UserLogin,
@@ -129,3 +130,36 @@ def forgot_password(
             logger.exception("Password reset email delivery failed")
 
     return {"detail": PASSWORD_RESET_MESSAGE}
+
+
+@router.post("/reset-password")
+def reset_password(
+    request: ResetPasswordRequest, db: Session = Depends(get_db)
+) -> dict[str, str]:
+    token_hash = hashlib.sha256(request.token.encode()).hexdigest()
+    now = datetime.now(UTC)
+    reset_token = db.scalar(
+        select(PasswordResetToken).where(
+            PasswordResetToken.token_hash == token_hash,
+            PasswordResetToken.used_at.is_(None),
+            PasswordResetToken.expires_at > now,
+        )
+    )
+    if reset_token is None or not reset_token.user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="El enlace de recuperación no es válido o ya expiró",
+        )
+
+    reset_token.user.password_hash = hash_password(request.new_password)
+    active_tokens = db.scalars(
+        select(PasswordResetToken).where(
+            PasswordResetToken.user_id == reset_token.user_id,
+            PasswordResetToken.used_at.is_(None),
+        )
+    ).all()
+    for token in active_tokens:
+        token.used_at = now
+
+    db.commit()
+    return {"detail": "La contraseña se actualizó correctamente"}
