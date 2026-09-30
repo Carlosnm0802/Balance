@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from app.models.budget import Budget
     from app.models.category import Category
     from app.models.expense import Expense
+    from app.models.password_reset_token import PasswordResetToken
 
 
 class User(Base):
@@ -34,3 +35,6 @@ class User(Base):
     categories: Mapped[list["Category"]] = relationship(back_populates="user")
     expenses: Mapped[list["Expense"]] = relationship(back_populates="user")
     budgets: Mapped[list["Budget"]] = relationship(back_populates="user")
+    password_reset_tokens: Mapped[list["PasswordResetToken"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )

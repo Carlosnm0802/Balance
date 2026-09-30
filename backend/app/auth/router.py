@@ -1,3 +1,8 @@
+import hashlib
+import logging
+import secrets
+from datetime import UTC, datetime, timedelta
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
@@ -5,12 +10,25 @@ from sqlalchemy.orm import Session
 
 from app.auth.dependencies import get_current_user
 from app.auth.security import create_access_token, hash_password, verify_password
+from app.db.config import settings
 from app.db.session import get_db
+from app.email.resend import send_password_reset_email
+from app.models.password_reset_token import PasswordResetToken
 from app.models.user import User
-from app.schemas.user import TokenResponse, UserCreate, UserLogin, UserResponse
+from app.schemas.user import (
+    ForgotPasswordRequest,
+    TokenResponse,
+    UserCreate,
+    UserLogin,
+    UserResponse,
+)
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 INVALID_CREDENTIALS = "Correo o contraseña incorrectos"
+PASSWORD_RESET_MESSAGE = (
+    "Si el correo está registrado, recibirás instrucciones para recuperar tu contraseña"
+)
+logger = logging.getLogger(__name__)
 
 
 @router.post(
@@ -73,3 +91,41 @@ def login_user(credentials: UserLogin, db: Session = Depends(get_db)) -> TokenRe
 @router.get("/me", response_model=UserResponse)
 def read_current_user(current_user: User = Depends(get_current_user)) -> User:
     return current_user
+
+
+@router.post("/forgot-password", status_code=status.HTTP_202_ACCEPTED)
+def forgot_password(
+    request: ForgotPasswordRequest, db: Session = Depends(get_db)
+) -> dict[str, str]:
+    email = str(request.email).strip().lower()
+    user = db.scalar(select(User).where(User.email == email, User.is_active.is_(True)))
+
+    if user is not None:
+        now = datetime.now(UTC)
+        active_tokens = db.scalars(
+            select(PasswordResetToken).where(
+                PasswordResetToken.user_id == user.id,
+                PasswordResetToken.used_at.is_(None),
+            )
+        ).all()
+        for token in active_tokens:
+            token.used_at = now
+
+        raw_token = secrets.token_urlsafe(32)
+        token_hash = hashlib.sha256(raw_token.encode()).hexdigest()
+        reset_token = PasswordResetToken(
+            user_id=user.id,
+            token_hash=token_hash,
+            expires_at=now
+            + timedelta(minutes=settings.password_reset_token_expire_minutes),
+        )
+        db.add(reset_token)
+        db.commit()
+
+        reset_url = f"{settings.frontend_url}/reset-password?token={raw_token}"
+        try:
+            send_password_reset_email(user.email, reset_url)
+        except Exception:
+            logger.exception("Password reset email delivery failed")
+
+    return {"detail": PASSWORD_RESET_MESSAGE}

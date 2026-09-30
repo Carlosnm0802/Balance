@@ -132,6 +132,21 @@ Authorization: Bearer <access_token>
 
 La API valida la firma, expiración, usuario y estado activo antes de devolver sus datos públicos.
 
+Para solicitar la recuperación de contraseña:
+
+```http
+POST /auth/forgot-password
+Content-Type: application/json
+```
+
+```json
+{
+  "email": "carlos@example.com"
+}
+```
+
+La respuesta es siempre `202 Accepted` con un mensaje genérico, exista o no la cuenta. Si el correo está registrado, se genera un token aleatorio de un solo uso, se guarda únicamente su hash y se envía un enlace mediante Resend. El token expira según `PASSWORD_RESET_TOKEN_EXPIRE_MINUTES` (60 minutos por defecto). La validación del token y el cambio de contraseña se implementarán en el ticket siguiente.
+
 ## Frontend
 
 En otra terminal, instalar dependencias y arrancar Vite:
