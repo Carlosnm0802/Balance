@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { login } from "../services/auth.js";
 
-function LoginForm({ onLogin }) {
+function LoginForm({ onLogin, onShowRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -99,7 +99,10 @@ function LoginForm({ onLogin }) {
         </form>
 
         <p className="form-footer">
-          ¿Aún no tienes una cuenta? <span>El registro llegará pronto.</span>
+          ¿Aún no tienes una cuenta?{" "}
+          <button className="inline-button" type="button" onClick={onShowRegister}>
+            Crear cuenta
+          </button>
         </p>
       </div>
     </section>

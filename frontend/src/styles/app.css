@@ -227,6 +227,45 @@ input:focus {
   font-weight: 700;
 }
 
+.inline-button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #577b49;
+  font-size: inherit;
+  font-weight: 800;
+}
+
+.inline-button:hover {
+  text-decoration: underline;
+}
+
+.register-card {
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
+
+.success-card-content {
+  text-align: center;
+}
+
+.success-card-content .success-icon {
+  margin-bottom: 24px;
+}
+
+.success-card-content h2 {
+  margin: 0;
+  font-size: 2.25rem;
+  letter-spacing: -0.06em;
+}
+
+.success-copy {
+  margin: 14px 0 30px;
+  color: #708077;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 .success-card {
   width: min(100%, 430px);
   padding: 52px;

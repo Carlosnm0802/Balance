@@ -18,6 +18,24 @@ export async function login(email, password) {
   return response.json();
 }
 
+export async function register(name, email, password) {
+  const response = await fetch(`${API_URL}/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, email, password }),
+  });
+
+  if (!response.ok) {
+    const error = new Error("No se pudo crear la cuenta");
+    error.status = response.status;
+    throw error;
+  }
+
+  return response.json();
+}
+
 export async function getCurrentUser(accessToken) {
   const response = await fetch(`${API_URL}/auth/me`, {
     headers: {

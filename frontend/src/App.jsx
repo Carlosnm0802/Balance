@@ -1,10 +1,12 @@
 import { useState } from "react";
 import LoginForm from "./components/LoginForm.jsx";
+import RegisterForm from "./components/RegisterForm.jsx";
 import { getCurrentUser } from "./services/auth.js";
 import "./styles/app.css";
 
 function App() {
   const [session, setSession] = useState(null);
+  const [authView, setAuthView] = useState("login");
 
   async function handleLogin(accessToken) {
     const user = await getCurrentUser(accessToken);
@@ -35,7 +37,14 @@ function App() {
 
   return (
     <main className="app-page">
-      <LoginForm onLogin={handleLogin} />
+      {authView === "login" ? (
+        <LoginForm
+          onLogin={handleLogin}
+          onShowRegister={() => setAuthView("register")}
+        />
+      ) : (
+        <RegisterForm onShowLogin={() => setAuthView("login")} />
+      )}
     </main>
   );
 }

@@ -161,7 +161,7 @@ npm run dev
 
 Vite mostrará en la terminal la URL local del frontend.
 
-La pantalla inicial permite iniciar sesión mediante `POST /auth/login`. El JWT se mantiene únicamente en memoria del navegador durante esta primera versión, por lo que se pierde al recargar la página. El frontend consulta `GET /auth/me` después del login para mostrar el usuario autenticado.
+La pantalla inicial permite iniciar sesión mediante `POST /auth/login` o cambiar al formulario de registro para crear una cuenta mediante `POST /auth/register`. Después de un registro exitoso, el usuario vuelve al login y debe iniciar sesión manualmente. El JWT se mantiene únicamente en memoria del navegador durante esta primera versión, por lo que se pierde al recargar la página. El frontend consulta `GET /auth/me` después del login para mostrar el usuario autenticado.
 
 ## Variables de entorno
 
