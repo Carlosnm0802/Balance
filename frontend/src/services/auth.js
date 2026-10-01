@@ -49,3 +49,39 @@ export async function getCurrentUser(accessToken) {
 
   return response.json();
 }
+
+export async function requestPasswordReset(email) {
+  const response = await fetch(`${API_URL}/auth/forgot-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+
+  if (!response.ok) {
+    const error = new Error("No se pudo solicitar la recuperación");
+    error.status = response.status;
+    throw error;
+  }
+
+  return response.json();
+}
+
+export async function resetPassword(token, newPassword) {
+  const response = await fetch(`${API_URL}/auth/reset-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token, new_password: newPassword }),
+  });
+
+  if (!response.ok) {
+    const error = new Error("No se pudo actualizar la contraseña");
+    error.status = response.status;
+    throw error;
+  }
+
+  return response.json();
+}

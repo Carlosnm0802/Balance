@@ -163,6 +163,8 @@ Vite mostrará en la terminal la URL local del frontend.
 
 La pantalla inicial permite iniciar sesión mediante `POST /auth/login` o cambiar al formulario de registro para crear una cuenta mediante `POST /auth/register`. Después de un registro exitoso, el usuario vuelve al login y debe iniciar sesión manualmente. El JWT se mantiene únicamente en memoria del navegador durante esta primera versión, por lo que se pierde al recargar la página. El frontend consulta `GET /auth/me` después del login para mostrar el usuario autenticado.
 
+El enlace `¿La olvidaste?` abre el formulario de recuperación y llama a `POST /auth/forgot-password`. Los enlaces enviados por Resend abren `/reset-password?token=...`, donde la aplicación permite crear una nueva contraseña mediante `POST /auth/reset-password`. El token se mantiene solo en memoria y se elimina de la URL después de un cambio exitoso.
+
 ## Variables de entorno
 
 Los archivos `.env.example` documentan las variables esperadas. Para desarrollo local, copia el ejemplo correspondiente a `.env` antes de agregar valores específicos:

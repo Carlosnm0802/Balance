@@ -52,7 +52,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 10 | Endpoint de reseteo de contraseña (validar token + actualizar) | [x] |
 | 11 | UI: pantalla de login | [x] |
 | 12 | UI: pantalla de registro | [x] |
-| 13 | UI: pantalla de recuperación/reseteo de contraseña | [ ] |
+| 13 | UI: pantalla de recuperación/reseteo de contraseña | [x] |
 | 14 | Endpoint CRUD de categorías (respetando predefinidas) | [ ] |
 | 15 | UI: gestión de categorías | [ ] |
 | 16 | Endpoint CRUD de gastos (flag recurrente + categoría) | [ ] |

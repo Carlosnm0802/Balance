@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { login } from "../services/auth.js";
 
-function LoginForm({ onLogin, onShowRegister }) {
+function LoginForm({ onLogin, onShowForgotPassword, onShowRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -71,7 +71,11 @@ function LoginForm({ onLogin, onShowRegister }) {
 
           <div className="password-label-row">
             <label htmlFor="password">Contraseña</label>
-            <button className="text-button" type="button" disabled>
+            <button
+              className="text-button"
+              type="button"
+              onClick={onShowForgotPassword}
+            >
               ¿La olvidaste?
             </button>
           </div>
