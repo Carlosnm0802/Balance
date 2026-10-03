@@ -165,6 +165,8 @@ La pantalla inicial permite iniciar sesión mediante `POST /auth/login` o cambia
 
 El enlace `¿La olvidaste?` abre el formulario de recuperación y llama a `POST /auth/forgot-password`. Los enlaces enviados por Resend abren `/reset-password?token=...`, donde la aplicación permite crear una nueva contraseña mediante `POST /auth/reset-password`. El token se mantiene solo en memoria y se elimina de la URL después de un cambio exitoso.
 
+Las categorías se administran mediante rutas protegidas en `/categories`. El listado incluye las categorías predefinidas y las categorías personalizadas del usuario autenticado. Las categorías predefinidas no se pueden editar ni eliminar, y una categoría personalizada con gastos asociados no puede eliminarse.
+
 ## Variables de entorno
 
 Los archivos `.env.example` documentan las variables esperadas. Para desarrollo local, copia el ejemplo correspondiente a `.env` antes de agregar valores específicos:
