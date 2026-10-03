@@ -167,6 +167,8 @@ El enlace `¿La olvidaste?` abre el formulario de recuperación y llama a `POST 
 
 Las categorías se administran mediante rutas protegidas en `/categories`. El listado incluye las categorías predefinidas y las categorías personalizadas del usuario autenticado. Las categorías predefinidas no se pueden editar ni eliminar, y una categoría personalizada con gastos asociados no puede eliminarse.
 
+Después de iniciar sesión, la pantalla principal muestra la gestión de categorías. Desde ahí se pueden crear, editar y eliminar categorías personalizadas; las categorías del sistema se muestran como elementos de solo lectura. El JWT se conserva en memoria mientras la sesión está activa.
+
 ## Variables de entorno
 
 Los archivos `.env.example` documentan las variables esperadas. Para desarrollo local, copia el ejemplo correspondiente a `.env` antes de agregar valores específicos:

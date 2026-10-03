@@ -54,7 +54,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 12 | UI: pantalla de registro | [x] |
 | 13 | UI: pantalla de recuperación/reseteo de contraseña | [x] |
 | 14 | Endpoint CRUD de categorías (respetando predefinidas) | [x] |
-| 15 | UI: gestión de categorías | [ ] |
+| 15 | UI: gestión de categorías | [x] |
 | 16 | Endpoint CRUD de gastos (flag recurrente + categoría) | [ ] |
 | 17 | UI: formulario "Registrar gasto" | [ ] |
 | 18 | UI: pantalla de Historial (listado + filtros) | [ ] |

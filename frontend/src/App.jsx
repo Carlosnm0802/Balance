@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CategoryManager from "./components/CategoryManager.jsx";
 import ForgotPasswordForm from "./components/ForgotPasswordForm.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import RegisterForm from "./components/RegisterForm.jsx";
@@ -20,23 +21,11 @@ function App() {
 
   if (session) {
     return (
-      <main className="app-page">
-        <div className="success-card">
-          <div className="success-icon" aria-hidden="true">
-            ✓
-          </div>
-          <p className="eyebrow">Sesión activa</p>
-          <h1>Hola, {session.user.name}.</h1>
-          <p>Tu espacio de Balance está listo para empezar.</p>
-          <button
-            className="submit-button"
-            type="button"
-            onClick={() => setSession(null)}
-          >
-            Cerrar sesión
-          </button>
-        </div>
-      </main>
+      <CategoryManager
+        accessToken={session.accessToken}
+        user={session.user}
+        onLogout={() => setSession(null)}
+      />
     );
   }
 
