@@ -175,6 +175,8 @@ La pantalla autenticada también incluye el formulario `Registrar gasto`, con im
 
 Debajo del formulario se muestra el historial de gastos con filtros locales por categoría, rango de fechas y recurrencia. El total visible se calcula sobre los resultados filtrados y las acciones de editar/eliminar actualizan la lista sin recargar la página.
 
+Los presupuestos mensuales se configuran mediante `PUT /budgets/{year}/{month}` y se consultan con `GET /budgets/{year}/{month}`. El presupuesto es un valor manual por usuario y período; al repetir el `PUT` se actualiza el importe existente.
+
 ## Variables de entorno
 
 Los archivos `.env.example` documentan las variables esperadas. Para desarrollo local, copia el ejemplo correspondiente a `.env` antes de agregar valores específicos:
