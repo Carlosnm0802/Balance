@@ -169,6 +169,8 @@ Las categorías se administran mediante rutas protegidas en `/categories`. El li
 
 Después de iniciar sesión, la pantalla principal muestra la gestión de categorías. Desde ahí se pueden crear, editar y eliminar categorías personalizadas; las categorías del sistema se muestran como elementos de solo lectura. El JWT se conserva en memoria mientras la sesión está activa.
 
+La API de gastos está disponible en `/expenses` para crear, listar, consultar, actualizar y eliminar gastos autenticados. Cada gasto pertenece al usuario que lo registra, requiere una categoría disponible para ese usuario y conserva el indicador manual `is_recurring`. Los listados se ordenan por fecha descendente; los filtros y la pantalla de historial se implementarán posteriormente.
+
 ## Variables de entorno
 
 Los archivos `.env.example` documentan las variables esperadas. Para desarrollo local, copia el ejemplo correspondiente a `.env` antes de agregar valores específicos:

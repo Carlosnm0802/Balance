@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.auth.router import router as auth_router
 from app.categories.router import router as categories_router
 from app.db.config import settings
+from app.expenses.router import router as expenses_router
 
 app = FastAPI(title="Balance API")
 
@@ -17,6 +18,7 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(categories_router)
+app.include_router(expenses_router)
 
 
 @app.get("/health")
