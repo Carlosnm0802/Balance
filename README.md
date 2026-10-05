@@ -173,6 +173,8 @@ La API de gastos está disponible en `/expenses` para crear, listar, consultar, 
 
 La pantalla autenticada también incluye el formulario `Registrar gasto`, con importe en MXN, fecha, categoría, descripción opcional y la opción de marcar el gasto como recurrente.
 
+Debajo del formulario se muestra el historial de gastos con filtros locales por categoría, rango de fechas y recurrencia. El total visible se calcula sobre los resultados filtrados y las acciones de editar/eliminar actualizan la lista sin recargar la página.
+
 ## Variables de entorno
 
 Los archivos `.env.example` documentan las variables esperadas. Para desarrollo local, copia el ejemplo correspondiente a `.env` antes de agregar valores específicos:

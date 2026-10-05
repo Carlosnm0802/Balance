@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getCategories } from "../services/categories.js";
 import { createExpense } from "../services/expenses.js";
 
-function ExpenseForm({ accessToken, onLogout }) {
+function ExpenseForm({ accessToken, onLogout, onCreated }) {
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -53,7 +53,7 @@ function ExpenseForm({ accessToken, onLogout }) {
 
     setIsSubmitting(true);
     try {
-      await createExpense(accessToken, {
+      const createdExpense = await createExpense(accessToken, {
         amount: numericAmount.toFixed(2),
         description: description.trim() || null,
         expense_date: expenseDate,
@@ -65,6 +65,7 @@ function ExpenseForm({ accessToken, onLogout }) {
       setCategoryId("");
       setIsRecurring(false);
       setSuccess("Gasto registrado correctamente.");
+      onCreated?.(createdExpense);
     } catch (requestError) {
       if (requestError.status === 401) {
         onLogout("Tu sesión expiró. Vuelve a iniciar sesión.");
