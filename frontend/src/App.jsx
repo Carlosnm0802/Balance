@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CategoryManager from "./components/CategoryManager.jsx";
+import BudgetManager from "./components/BudgetManager.jsx";
 import ExpenseForm from "./components/ExpenseForm.jsx";
 import ExpenseHistory from "./components/ExpenseHistory.jsx";
 import ForgotPasswordForm from "./components/ForgotPasswordForm.jsx";
@@ -38,6 +39,10 @@ function App() {
         <ExpenseHistory
           accessToken={session.accessToken}
           refreshKey={expensesRefreshKey}
+          onLogout={() => setSession(null)}
+        />
+        <BudgetManager
+          accessToken={session.accessToken}
           onLogout={() => setSession(null)}
         />
       </main>

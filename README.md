@@ -177,6 +177,8 @@ Debajo del formulario se muestra el historial de gastos con filtros locales por 
 
 Los presupuestos mensuales se configuran mediante `PUT /budgets/{year}/{month}` y se consultan con `GET /budgets/{year}/{month}`. El presupuesto es un valor manual por usuario y período; al repetir el `PUT` se actualiza el importe existente.
 
+La pantalla autenticada incluye el presupuesto mensual debajo del historial. Permite navegar entre meses, crear un presupuesto y editar el importe del período seleccionado en MXN.
+
 ## Variables de entorno
 
 Los archivos `.env.example` documentan las variables esperadas. Para desarrollo local, copia el ejemplo correspondiente a `.env` antes de agregar valores específicos:
