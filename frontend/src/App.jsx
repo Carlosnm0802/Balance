@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CategoryManager from "./components/CategoryManager.jsx";
+import ExpenseForm from "./components/ExpenseForm.jsx";
 import ForgotPasswordForm from "./components/ForgotPasswordForm.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import RegisterForm from "./components/RegisterForm.jsx";
@@ -21,11 +22,17 @@ function App() {
 
   if (session) {
     return (
-      <CategoryManager
-        accessToken={session.accessToken}
-        user={session.user}
-        onLogout={() => setSession(null)}
-      />
+      <main className="authenticated-page">
+        <CategoryManager
+          accessToken={session.accessToken}
+          user={session.user}
+          onLogout={() => setSession(null)}
+        />
+        <ExpenseForm
+          accessToken={session.accessToken}
+          onLogout={() => setSession(null)}
+        />
+      </main>
     );
   }
 

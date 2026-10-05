@@ -56,7 +56,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 14 | Endpoint CRUD de categorías (respetando predefinidas) | [x] |
 | 15 | UI: gestión de categorías | [x] |
 | 16 | Endpoint CRUD de gastos (flag recurrente + categoría) | [x] |
-| 17 | UI: formulario "Registrar gasto" | [ ] |
+| 17 | UI: formulario "Registrar gasto" | [x] |
 | 18 | UI: pantalla de Historial (listado + filtros) | [ ] |
 | 19 | Endpoint para configurar/editar presupuesto | [ ] |
 | 20 | UI: pantalla de Presupuesto | [ ] |
