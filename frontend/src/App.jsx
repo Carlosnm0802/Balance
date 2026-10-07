@@ -7,6 +7,7 @@ import ForgotPasswordForm from "./components/ForgotPasswordForm.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import MetricsDashboard from "./components/MetricsDashboard.jsx";
 import RegisterForm from "./components/RegisterForm.jsx";
+import ReportsCharts from "./components/ReportsCharts.jsx";
 import ResetPasswordForm from "./components/ResetPasswordForm.jsx";
 import { getCurrentUser } from "./services/auth.js";
 import "./styles/app.css";
@@ -43,6 +44,10 @@ function App() {
           onLogout={() => setSession(null)}
         />
         <MetricsDashboard
+          accessToken={session.accessToken}
+          onLogout={() => setSession(null)}
+        />
+        <ReportsCharts
           accessToken={session.accessToken}
           onLogout={() => setSession(null)}
         />

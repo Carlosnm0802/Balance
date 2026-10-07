@@ -62,7 +62,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 20 | UI: pantalla de Presupuesto | [x] |
 | 21 | Endpoint(s) de métricas agregadas (mes, categoría, comparación) | [x] |
 | 22 | UI: Dashboard con métricas | [x] |
-| 23 | UI: Reportes/Gráficas | [ ] |
+| 23 | UI: Reportes/Gráficas | [x] |
 | 24 | Endpoint + UI de Perfil (ver/editar cuenta, cerrar sesión) | [ ] |
 | 25 | Pruebas unitarias de lógica de negocio | [ ] |
 | 26 | Pruebas de integración de endpoints críticos | [ ] |
