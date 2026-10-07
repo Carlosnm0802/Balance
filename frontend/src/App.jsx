@@ -5,6 +5,7 @@ import ExpenseForm from "./components/ExpenseForm.jsx";
 import ExpenseHistory from "./components/ExpenseHistory.jsx";
 import ForgotPasswordForm from "./components/ForgotPasswordForm.jsx";
 import LoginForm from "./components/LoginForm.jsx";
+import MetricsDashboard from "./components/MetricsDashboard.jsx";
 import RegisterForm from "./components/RegisterForm.jsx";
 import ResetPasswordForm from "./components/ResetPasswordForm.jsx";
 import { getCurrentUser } from "./services/auth.js";
@@ -39,6 +40,10 @@ function App() {
         <ExpenseHistory
           accessToken={session.accessToken}
           refreshKey={expensesRefreshKey}
+          onLogout={() => setSession(null)}
+        />
+        <MetricsDashboard
+          accessToken={session.accessToken}
           onLogout={() => setSession(null)}
         />
         <BudgetManager
