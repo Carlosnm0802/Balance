@@ -6,6 +6,7 @@ import ExpenseHistory from "./components/ExpenseHistory.jsx";
 import ForgotPasswordForm from "./components/ForgotPasswordForm.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import MetricsDashboard from "./components/MetricsDashboard.jsx";
+import ProfilePanel from "./components/ProfilePanel.jsx";
 import RegisterForm from "./components/RegisterForm.jsx";
 import ReportsCharts from "./components/ReportsCharts.jsx";
 import ResetPasswordForm from "./components/ResetPasswordForm.jsx";
@@ -31,6 +32,14 @@ function App() {
         <CategoryManager
           accessToken={session.accessToken}
           user={session.user}
+          onLogout={() => setSession(null)}
+        />
+        <ProfilePanel
+          accessToken={session.accessToken}
+          user={session.user}
+          onUserUpdated={(updatedUser) =>
+            setSession((current) => ({ ...current, user: updatedUser }))
+          }
           onLogout={() => setSession(null)}
         />
         <ExpenseForm

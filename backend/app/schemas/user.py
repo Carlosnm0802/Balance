@@ -43,3 +43,15 @@ class ForgotPasswordRequest(BaseModel):
 class ResetPasswordRequest(BaseModel):
     token: str = Field(min_length=1)
     new_password: str = Field(min_length=8, max_length=128)
+
+
+class UserProfileUpdate(BaseModel):
+    name: str = Field(min_length=1, max_length=100)
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, value: str) -> str:
+        name = value.strip()
+        if not name:
+            raise ValueError("El nombre no puede estar vacío")
+        return name

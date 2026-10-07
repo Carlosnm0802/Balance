@@ -954,6 +954,50 @@ input:focus {
   font-size: 0.82rem;
 }
 
+.category-status {
+  margin: 0;
+  color: #708077;
+  font-size: 0.82rem;
+}
+
+.profile-card {
+  width: min(calc(100% - 64px), 1120px);
+  margin: 0 32px;
+  border: 1px solid #d5e0d3;
+  border-radius: 18px;
+  padding: 28px 30px 32px;
+  background: rgba(252, 253, 251, 0.86);
+  box-shadow: 0 14px 40px rgba(34, 57, 45, 0.07);
+}
+
+.profile-heading {
+  margin-bottom: 18px;
+}
+
+.profile-symbol {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: #dff2c5;
+}
+
+.profile-form {
+  max-width: 560px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.profile-actions .logout-button {
+  margin-top: 0;
+}
+
 .category-section {
   margin-bottom: 44px;
 }
@@ -1195,6 +1239,12 @@ input:focus {
   }
 
   .metrics-card {
+    width: calc(100% - 36px);
+    margin: 0 18px;
+    padding: 24px 20px 26px;
+  }
+
+  .profile-card {
     width: calc(100% - 36px);
     margin: 0 18px;
     padding: 24px 20px 26px;

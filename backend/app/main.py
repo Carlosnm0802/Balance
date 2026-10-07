@@ -7,6 +7,7 @@ from app.categories.router import router as categories_router
 from app.db.config import settings
 from app.expenses.router import router as expenses_router
 from app.metrics.router import router as metrics_router
+from app.profile.router import router as profile_router
 
 app = FastAPI(title="Balance API")
 
@@ -23,6 +24,7 @@ app.include_router(budgets_router)
 app.include_router(categories_router)
 app.include_router(expenses_router)
 app.include_router(metrics_router)
+app.include_router(profile_router)
 
 
 @app.get("/health")
