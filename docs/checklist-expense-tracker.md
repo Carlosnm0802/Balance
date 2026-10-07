@@ -60,7 +60,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 18 | UI: pantalla de Historial (listado + filtros) | [x] |
 | 19 | Endpoint para configurar/editar presupuesto | [x] |
 | 20 | UI: pantalla de Presupuesto | [x] |
-| 21 | Endpoint(s) de métricas agregadas (mes, categoría, comparación) | [ ] |
+| 21 | Endpoint(s) de métricas agregadas (mes, categoría, comparación) | [x] |
 | 22 | UI: Dashboard con métricas | [ ] |
 | 23 | UI: Reportes/Gráficas | [ ] |
 | 24 | Endpoint + UI de Perfil (ver/editar cuenta, cerrar sesión) | [ ] |
