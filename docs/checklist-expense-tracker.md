@@ -66,7 +66,7 @@ Lista tus tickets antes de abrir el agente de código:
 | 24 | Endpoint + UI de Perfil (ver/editar cuenta, cerrar sesión) | [x] |
 | 25 | Pruebas unitarias de lógica de negocio | [x] |
 | 26 | Pruebas de integración de endpoints críticos | [x] |
-| 27 | Desplegar backend + DB | [ ] |
+| 27 | Desplegar backend + DB | [x] |
 | 28 | Desplegar frontend + variables de entorno + prueba end-to-end en producción | [ ] |
 
 ---

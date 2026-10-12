@@ -189,3 +189,43 @@ cp frontend/.env.example frontend/.env
 ```
 
 Los archivos `.env` reales están excluidos de Git.
+
+## Despliegue de backend + DB en Railway
+
+Este proyecto ya incluye `backend/Dockerfile` para desplegar el backend en Railway.
+
+### 1) Crear servicios en Railway
+
+- Crear un proyecto nuevo en Railway.
+- Agregar servicio **PostgreSQL**.
+- Agregar servicio para el backend apuntando a este repo y usando la carpeta `backend/`.
+
+### 2) Variables de entorno del backend
+
+Configurar en Railway (servicio backend):
+
+- `DATABASE_URL`
+- `JWT_SECRET_KEY`
+- `JWT_ACCESS_TOKEN_EXPIRE_MINUTES`
+- `RESEND_API_KEY`
+- `RESEND_FROM_EMAIL`
+- `FRONTEND_URL`
+- `PASSWORD_RESET_TOKEN_EXPIRE_MINUTES`
+
+> Importante: Railway suele exponer PostgreSQL como `postgres://...`.
+> Para SQLAlchemy en este proyecto se necesita `postgresql+psycopg://...`.
+> Si Railway te da `postgres://`, cámbialo a `postgresql+psycopg://` en `DATABASE_URL`.
+
+### 3) Ejecutar migraciones en Railway
+
+En el servicio backend, ejecutar el comando de migración:
+
+```bash
+alembic upgrade head
+```
+
+### 4) Verificación mínima en producción
+
+- `GET /health` debe responder `{"status":"ok"}`.
+- Probar `POST /auth/register` y `POST /auth/login`.
+- Probar una ruta protegida (`GET /profile/me`) con token Bearer.
