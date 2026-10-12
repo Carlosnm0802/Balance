@@ -12,5 +12,10 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
+    @property
+    def frontend_origins(self) -> list[str]:
+        origins = self.frontend_url.split(",")
+        return [origin.strip() for origin in origins if origin.strip()]
+
 
 settings = Settings()
