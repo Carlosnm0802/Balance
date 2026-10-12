@@ -19,3 +19,5 @@ frontend/dist/
 
 # Docker
 postgres-data/
+.vercel
+.env*
